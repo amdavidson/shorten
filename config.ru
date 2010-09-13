@@ -22,9 +22,9 @@ require 'sinatra'
 #  :raise_errors => true
 #)
 
-log = File.new("sinatra.log", "a")
-$stdout.reopen(log)
-$stderr.reopen(log)
+#log = File.new("sinatra.log", "a")
+#$stdout.reopen(log)
+#$stderr.reopen(log)
 
 require 'main'
 run Sinatra::Application
