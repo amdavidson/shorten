@@ -15,12 +15,12 @@ require 'sinatra'
 #require File.expand_path('~/.gem/ruby/1.8/gems/rack*')
 #require File.expand_path('~/.gem/ruby/1.8/gems/sinatra*')
 
-Sinatra::Application.default_options.merge!(
-  :views => File.join(File.dirname(__FILE__), 'views'),
-  :run => false,
-  :env => ENV['RACK_ENV'],
-  :raise_errors => true
-)
+#Sinatra::Application.default_options.merge!(
+#  :views => File.join(File.dirname(__FILE__), 'views'),
+#  :run => false,
+#  :env => ENV['RACK_ENV'],
+#  :raise_errors => true
+#)
 
 log = File.new("sinatra.log", "a")
 $stdout.reopen(log)
