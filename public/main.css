@@ -1,0 +1,67 @@
+a {
+	text-decoration: none;
+	color: #5671a7;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:active {
+	color: #ff9400;
+}
+
+#content {
+	width: 689px;
+	height: 295px;
+	margin: 1.5em auto;
+	padding: 83px 0px 0px 22px;
+}
+
+#content p {
+	margin-top: 0px;
+}
+
+#url {
+	font-size: 1.8em;
+	font-weight: bold;
+	font-family: "Verdana", sans-serif;
+	border: 7px solid black;
+	padding: 7px;
+}
+
+#content input[type="submit"] {
+	font-size: 1.8em;
+	font-family: "Verdana", sans-serif;
+	font-weight: bold;
+	border: 7px solid black;
+	padding: 7px;
+}
+
+#information {
+	width: 490px;
+	padding-top: 0.5em;
+	padding-right: 199px;
+	margin: 0 auto;
+	margin-top: -197px;
+	
+	font-family: "Verdana", sans-serif;
+}
+
+#information h2 {
+	font-size: 1.2em;
+}
+
+#information p {
+	font-size: 0.90em;
+}
+.main {
+	background: url('images/main_background.png') no-repeat;
+}
+
+.finished {
+	background: url('images/finished_background.png') no-repeat;
+	font-size: 1.8em;
+	font-family: "Verdana", sans-serif;
+	font-weight: bold;
+}
