@@ -104,7 +104,7 @@ post '/' do
 end
 
 get '/:short' do
-	url = ShortenUrl.filter(:id => Shorten.shortener.to_i(params[:short])).first
+	url = ShortenUrl.find(:key => params[:short])
 	
 # 	require 'log'
 # 	
