@@ -27,18 +27,6 @@ class ShortenUrl < Sequel::Model
  		uri = URI::parse(link)
  		raise "Invalid URL" unless uri.kind_of? URI::HTTP or uri.kind_of? URI::HTTPS
 
-# 		url = self.filter(:url => link).first
-# 		if !url
-# 			max_id = self.order(:id.desc).first
-# 			if !max_id
-# 				max_id = 0
-# 			else
-# 				max_id = max_id.id
-# 			end
-# 			url = self.new(:url => link)
-# 			url.save
-# 		end
-
 		url = self.filter(:url => link).first
 		if !url 
 
