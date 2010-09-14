@@ -61,11 +61,6 @@ end
 
 get '/' do
 	@information = show_information
-	erb :index, :locals => { :type => "main" }
-end
-
-get '/new' do
-	@information = show_information
 	erb :new, :locals => { :type => "main" }
 end
 
