@@ -7,10 +7,12 @@ You can see an example of this service running at [&#x27bc;.ws][example].
 
 ## Installation
 
+
 ### Clone
 	
 	$ git clone git://github.com/amdavidson/shorten.git
 	
+
 ### Install required gems
 	
 	$ gem install rack sinatra sequel anybase pg
@@ -19,6 +21,18 @@ Optional: Install the [Heroku][heroku] gem if you want to deploy on Heroku.
 	
 	$ gem install heroku
 	
+
+### Deploy
+
+In the application directory run the following commands
+
+	$ heroku create
+
+Configure the application per below.
+
+	$ git push heroku master
+
+
 ### Configure
 
 Open <code>main.rb</code> in your favorite editor and change this block: 
@@ -27,14 +41,9 @@ Open <code>main.rb</code> in your favorite editor and change this block:
 		:service_name => "&#x27bc;.ws",
 		:button_text => "&#x27bc;",
 		:path_size => 4
-	)
-
-### Deploy
-
-In the application directory run the following commands
-
-	$ heroku create
-	$ git push heroku master
+	)	
+	
+	
 	
 ### Enjoy
 
