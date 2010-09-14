@@ -18,10 +18,6 @@ configure do
 	
 	$LOAD_PATH.unshift(File.dirname(__FILE__) + '/lib')
 	
-	# Change these two references from "62" to "71" if you want to include
-	# URL-legal, non-alphanumeric characters in your URLs.
-	require "shorteners/base62"
-	Shorten.shortener = Base62
 end
 
 $LOAD_PATH.unshift(File.dirname(__FILE__) + '/lib')
