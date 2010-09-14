@@ -27,3 +27,8 @@ ul, li {
 	padding-right: 25px;
 	text-shadow: #111 0px 2px 2px;
 }
+input {
+	font-size: 3em;
+	text-shadow: #111 0px 2px 2px;
+	text-align: center;
+}
