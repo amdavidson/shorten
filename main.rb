@@ -99,21 +99,12 @@ post '/' do
 
 	url = ShortenUrl.create_url(params[:url])
 	
-	#"#{url.short_url}"
 	erb :finished, :locals => { :url => url, :type => "finished" }
 end
 
 get '/:short' do
 	url = ShortenUrl.find(:key => params[:short])
-	
-# 	require 'log'
-# 	
-# 	log = Log.new
-# 	log.ip = request.ip
-# 	log.time = Time.now
-# 	log.shorten_url_id = url.id
-# 	log.save
-	
+		
 	halt 404, "Page not found" unless url
 	redirect url.url
 end
