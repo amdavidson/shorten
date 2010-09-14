@@ -10,9 +10,9 @@ configure do
 
 	require 'ostruct'
 	Shorten = OpenStruct.new(
-		:base_url => "http://localhost:4567/",
-		:service_name => "Lavish URL Shortener",
-		:button_text => "Short ♥!"
+		:base_url => "http://xn--8gi.ws/",
+		:service_name => "&#x27bc;.ws",
+		:button_text => "&#x27bc;"
 	)
 	
 	$LOAD_PATH.unshift(File.dirname(__FILE__) + '/lib')
