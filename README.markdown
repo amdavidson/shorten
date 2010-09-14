@@ -21,7 +21,7 @@ Optional: Install the [Heroku][heroku] gem if you want to deploy on Heroku.
 	
 ### Configure
 
-Open main.rb in your favorite editor and change this block: 
+Open <code>main.rb</code> in your favorite editor and change this block: 
 	Shorten = OpenStruct.new(
 		:base_url => "http://xn--8gi.ws/",
 		:service_name => "&#x27bc;.ws",
@@ -31,9 +31,16 @@ Open main.rb in your favorite editor and change this block:
 
 ### Deploy
 
-In the application directory
+In the application directory run the following commands
 
-	$ herok
+	$ heroku create
+	$ git push heroku master
+	
+### Enjoy
+
+You now have your own running URL shortener. Now use [domai.nr][domainr] or [name.com][name] to find 
+yourself an available, short URL and reconfigure <code>main.rb</code>
+	
 	
 ## History 
 
@@ -52,3 +59,5 @@ I made some updates to randomize the shortened URL in the style of [bit.ly][bitl
 [bitly]: http://bit.ly
 [trim]: http://tr.im
 [heroku]: http://heroku.com
+[domainr]: http://domai.nr
+[name]: http://name.com
