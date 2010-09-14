@@ -70,7 +70,6 @@ get '/new' do
 end
 
 get %r(/(api-){0,1}create/(.*)) do |api, link|
-	#link = params[:link]
 	validate_link link
 
 	url = ShortenUrl.create_url(link)
