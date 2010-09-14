@@ -3,7 +3,7 @@ body {
 	color: #fff;
 	text-align: center;
 	padding-top: 200px;
-	font-family: "Helvetica Neue","Helvetica","Lucida Grande","Lucida Sans Unicode", sans-serif;
+	font-family: 'IM Fell Double Pica', serif;
 	font-size: .9em;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -28,6 +28,7 @@ ul, li {
 	text-shadow: #111 0px 2px 2px;
 }
 input {
+	font-family: 'IM Fell Double Pica', serif;
 	font-size: 3em;
 	text-shadow: #111 0px 2px 2px;
 	text-align: center;
