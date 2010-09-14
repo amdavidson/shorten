@@ -10,7 +10,7 @@ configure do
 
 	require 'ostruct'
 	Shorten = OpenStruct.new(
-		:base_url => "http://xn--8gi.ws/",
+		:base_url => "http://➼.ws/",
 		:service_name => "&#x27bc;.ws",
 		:button_text => "&#x27bc;",
 		:path_size => 4
