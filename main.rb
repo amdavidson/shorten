@@ -12,7 +12,8 @@ configure do
 	Shorten = OpenStruct.new(
 		:base_url => "http://xn--8gi.ws/",
 		:service_name => "&#x27bc;.ws",
-		:button_text => "&#x27bc;"
+		:button_text => "&#x27bc;",
+		:path_size => 4
 	)
 	
 	$LOAD_PATH.unshift(File.dirname(__FILE__) + '/lib')
@@ -97,7 +98,7 @@ get %r(/(api-){0,1}create) do |api|
 	end
 end
 
-post '/new' do
+post '/' do
 	validate_link params[:url]
 
 	url = ShortenUrl.create_url(params[:url])

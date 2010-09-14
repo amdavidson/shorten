@@ -27,4 +27,5 @@ require 'sinatra'
 #$stderr.reopen(log)
 
 require 'main'
+
 run Sinatra::Application

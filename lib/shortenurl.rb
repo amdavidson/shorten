@@ -1,4 +1,7 @@
+require 'anybase'
+
 class ShortenUrl < Sequel::Model
+	plugin :validation_helpers
 	unless table_exists?
 		set_schema do
 			primary_key :id
@@ -8,25 +11,47 @@ class ShortenUrl < Sequel::Model
 		end
 		create_table
 	end
+	
+	def validate
+		super
+		validates_presence [:url, :key]
+		validates_unique :url
+		validates_unique :key
+	end
 			
 	def short_url
-		"#{Shorten.base_url}#{Shorten.shortener.to_s(id)}"
+		"#{Shorten.base_url}#{self.key.to_s}"
 	end
 	
 	def self.create_url(link)
-		uri = URI::parse(link)
-		raise "Invalid URL" unless uri.kind_of? URI::HTTP or uri.kind_of? URI::HTTPS
+ 		uri = URI::parse(link)
+ 		raise "Invalid URL" unless uri.kind_of? URI::HTTP or uri.kind_of? URI::HTTPS
+
+# 		url = self.filter(:url => link).first
+# 		if !url
+# 			max_id = self.order(:id.desc).first
+# 			if !max_id
+# 				max_id = 0
+# 			else
+# 				max_id = max_id.id
+# 			end
+# 			url = self.new(:url => link)
+# 			url.save
+# 		end
 
 		url = self.filter(:url => link).first
-		if !url
-			max_id = self.order(:id.desc).first
-			if !max_id
-				max_id = 0
-			else
-				max_id = max_id.id
+		if !url 
+
+			key = Anybase::Base62.random(Shorten.path_size)
+			key_check = self.filter(:url => key).first
+			
+			while key_check
+				key = Anybase::Base62.random(Shorten.path_size)
+				key_check = self.filter(:url => key).first
 			end
-			url = self.new(:url => link)
-			url.save
+	
+			url = self.new(:url => link, :key => key)
+			url.save					
 		end
 		
 		url
