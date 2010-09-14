@@ -67,6 +67,11 @@ get '/' do
 	erb :index, :locals => { :type => "main" }
 end
 
+get '/new' do
+	@information = show_information
+	erb :new, :locals => { :type => "main" }
+end
+
 get %r(/(api-){0,1}create/(.*)) do |api, link|
 	#link = params[:link]
 	validate_link link
@@ -92,7 +97,7 @@ get %r(/(api-){0,1}create) do |api|
 	end
 end
 
-post '/' do
+post '/new' do
 	validate_link params[:url]
 
 	url = ShortenUrl.create_url(params[:url])
