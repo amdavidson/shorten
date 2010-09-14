@@ -109,13 +109,13 @@ end
 get '/:short' do
 	url = ShortenUrl.filter(:id => Shorten.shortener.to_i(params[:short])).first
 	
-	require 'log'
-	
-	log = Log.new
-	log.ip = request.ip
-	log.time = Time.now
-	log.shorten_url_id = url.id
-	log.save
+# 	require 'log'
+# 	
+# 	log = Log.new
+# 	log.ip = request.ip
+# 	log.time = Time.now
+# 	log.shorten_url_id = url.id
+# 	log.save
 	
 	halt 404, "Page not found" unless url
 	redirect url.url
