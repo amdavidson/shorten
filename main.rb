@@ -10,7 +10,7 @@ configure do
 
 	require 'ostruct'
 	Shorten = OpenStruct.new(
-		:base_url => "http://➼.ws/",
+		:base_url => ENV['url'],
 		:service_name => "&#x27bc;.ws",
 		:button_text => "&#x27bc;",
 		:path_size => 4
@@ -91,14 +91,65 @@ end
 post '/' do
 	validate_link params[:url]
 
-	url = ShortenUrl.create_url(params[:url])
+	url = ShortenUrl.create_url(params[:url], params[:image])
 	
-	erb :finished, :locals => { :url => url, :type => "finished" }
+	erb :finished, :locals => { :url => url, :type => "finished", :image => params[:image] }
 end
 
-get '/:short' do
-	url = ShortenUrl.find(:key => params[:short])
-		
-	halt 404, "Page not found" unless url
-	redirect url.url
+get '/upload' do 
+  
+  erb :upload
+  
 end
+
+post '/upload' do 
+  require 'aws/s3'
+    
+  # establish connection
+  AWS::S3::Base.establish_connection!(
+    :access_key_id => ENV['s3_key'],
+    :secret_access_key => ENV['s3_secret']
+  )
+  
+  # generate key and check uniqueness
+  key = Anybase::Base62.random(Shorten.path_size)
+	key_check = ShortenUrl.filter(:url => key).first
+	
+	while key_check
+		key = Anybase::Base62.random(Shorten.path_size)
+		key_check = ShortenUrl.filter(:url => key).first
+	end
+	
+	# merge key and extension
+	ext = File.extname(params[:file][:filename])
+  filename = key + ext
+  #filename = params[:file][:filename]
+  
+  # upload to S3
+  AWS::S3::S3Object.store(filename, open(params[:file][:tempfile]), 'shorten', :access => :public_read)
+  object_url = AWS::S3::S3Object.url_for(filename, 'shorten', :authenticated => false)
+  
+  # generate shorturl
+  url = ShortenUrl.new(:url => object_url, :key => key, :image => params[:image])
+  url.save
+  #url = ShortenUrl.create_url(object_url, params[:image])
+  
+  erb :finished, :locals => { :url => url, :type => "finished", :image => params[:image] }
+end 
+
+get '/:short' do
+
+	url = ShortenUrl.find(:key => params[:short])
+	
+	halt 404, "Page not found" unless url
+	
+	if url.image == true 
+	  erb :image, :locals => {:url => url.url}
+	else
+	  redirect url.url
+	end
+
+end
+
+
+

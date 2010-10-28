@@ -1,9 +1,11 @@
+			<p style="margin-top:100px;">Shorten URL -- <a href="/upload">Upload File</a></p>
 			<% formtext = "Type URL. Press Enter." %>
 
 			<form method="POST" action="/">
 				<input type="text" name="url" id="url" size="30" value="<%= formtext %>"
   				onfocus="if ( this.value=='<%= formtext %>' ) { this.value = ''; }"
-  				onblur="if ( this.value=='' ) { this.value = '<%= formtext %>'; }"/>
+  				onblur="if ( this.value=='' ) { this.value = '<%= formtext %>'; }"/><br/>
+				Embed as image? <input type="checkbox" name="image" />
 				<input type="hidden" value="<%= Shorten.button_text %>" id="create_url" />
 			</form>
 			
