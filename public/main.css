@@ -3,6 +3,7 @@ body {
 	color: #fff;
 	text-align: center;
 	font-size: 1em;
+	text-shadow: #111 0px 2px 2px;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 }
@@ -17,7 +18,7 @@ a, a:visited {
 	text-decoration:none;
 }
 p a {
-	text-decoration:underline;
+	border-bottom: 1px dotted #fff;
 }
 a:hover {
 	color: #555;
