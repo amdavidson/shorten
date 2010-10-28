@@ -8,7 +8,6 @@ body {
 }
 h1 {
 	font-size: 3em;
-	text-shadow: #111 0px 2px 2px;
 	padding-top:50px;
 	padding-bottom: 50px;
 }
@@ -27,10 +26,8 @@ ul, li {
 	display: inline;
 	padding-left: 25px;
 	padding-right: 25px;
-	text-shadow: #111 0px 2px 2px;
 }
 input {
 	font-size: 3em;
-	text-shadow: #111 0px 2px 2px;
 	text-align: center;
 }
