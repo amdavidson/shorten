@@ -5,6 +5,8 @@ basic of functionality.
 
 You can see an example of this service running at [&#x27bc;.ws][example]. 
 
+File uploading with an Amazon S3 backend has been recently uploaded and works but is known to be very buggy. YMMV.
+
 ## Installation
 
 
