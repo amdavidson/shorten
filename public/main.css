@@ -2,7 +2,6 @@ body {
 	background-color:#3c3c3c;
 	color: #fff;
 	text-align: center;
-	padding-top: 200px;
 	font-family: 'IM Fell Double Pica', serif;
 	font-size: 1em;
 	text-rendering: optimizeLegibility;
@@ -11,11 +10,15 @@ body {
 h1 {
 	font-size: 3em;
 	text-shadow: #111 0px 2px 2px;
-	padding-bottom: 100px;
+	padding-top:50px;
+	padding-bottom: 50px;
 }
 a, a:visited {
 	color: #fff;
 	text-decoration:none;
+}
+p a {
+	text-decoration:underline;
 }
 a:hover {
 	color: #555;
