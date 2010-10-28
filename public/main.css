@@ -2,7 +2,6 @@ body {
 	background-color:#3c3c3c;
 	color: #fff;
 	text-align: center;
-	font-family: 'IM Fell Double Pica', serif;
 	font-size: 1em;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -31,7 +30,6 @@ ul, li {
 	text-shadow: #111 0px 2px 2px;
 }
 input {
-	font-family: 'IM Fell Double Pica', serif;
 	font-size: 3em;
 	text-shadow: #111 0px 2px 2px;
 	text-align: center;
