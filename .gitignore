@@ -1,3 +1,6 @@
 .DS_Store
+unicorn
+unicorn/*
+unicorn.rb
 shorten.db
 sinatra.log
