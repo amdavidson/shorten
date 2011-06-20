@@ -11,8 +11,8 @@ configure do
 	require 'ostruct'
 	Shorten = OpenStruct.new(
 		:base_url => ENV['url'],
-		:service_name => "&#x27bc;.ws",
-		:button_text => "&#x27bc;",
+		:service_name => "amd.im",
+		:button_text => "shorten",
 		:path_size => 4
 	)
 	
@@ -60,6 +60,11 @@ helpers do
 end 
 
 get '/' do
+	@information = show_information
+	erb :index
+end
+
+get '/new' do
 	@information = show_information
 	erb :new, :locals => { :type => "main" }
 end
@@ -126,7 +131,7 @@ post '/upload' do
   #filename = params[:file][:filename]
   
   # upload to S3
-  AWS::S3::S3Object.store(filename, open(params[:file][:tempfile]), 'shorten', :access => :public_read)
+  AWS::S3::S3Object.store(filename, open(params[:file][:tempfile]), 'amdim', :access => :public_read)
   object_url = AWS::S3::S3Object.url_for(filename, 'shorten', :authenticated => false)
   
   # generate shorturl
