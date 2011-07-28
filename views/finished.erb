@@ -1,13 +1,14 @@
 <h1><a href="<%= url.short_url %>"><%= url.short_url %></a></h1>
 
+<% require 'uri' %>
+<p><a href="https://mail.google.com/mail?extsrc=mailto&url=mailto:?body=<%= url.short_url %>">
+Gmail Link</a> -- <a href="http://twitter.com/home?status=<%= url.short_url %>">Tweet Link</a> --
+<a href="http://www.facebook.com/connect/prompt_feed.php?&message=<%= url.short_url %>">Facebook Link</a></p>
+
+
 <p>Redirects to <a href="<%= url.url %>"><%= url.url %></a></p>
 
-<p><a href="mailto:?subject=Shortened%20URL&body=<%= url.short_url %>">
-Email Link</a> -- <a href="http://twitter.com/home?status=<%= url.short_url %>">Tweet Link</a></p>
-
-
-
-<% if image then %>
+<% if defined?(image) then %>
 	<p>Check image embedding below:</p>
 	<p><img src="<%= url.url %>" /></p>
 <% end %>
