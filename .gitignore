@@ -4,3 +4,4 @@ unicorn/*
 unicorn.rb
 shorten.db
 sinatra.log
+keys.yaml
