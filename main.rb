@@ -10,7 +10,7 @@ configure do
 
 	require 'ostruct'
 	Shorten = OpenStruct.new(
-		:base_url => ENV['url'],
+		:base_url => "http://amd.im/",
 		:service_name => "amd.im",
 		:button_text => "shorten",
 		:path_size => 4
@@ -109,11 +109,14 @@ end
 
 post '/upload' do 
   require 'aws/s3'
-    
+  require 'yaml'
+ 
+  keys = YAML.load(File.open("keys.yaml", "r").read)
+ 
   # establish connection
   AWS::S3::Base.establish_connection!(
-    :access_key_id => ENV['s3_key'],
-    :secret_access_key => ENV['s3_secret']
+    :access_key_id => keys['s3_key'],
+    :secret_access_key => keys['s3_secret']
   )
   
   # generate key and check uniqueness
@@ -131,8 +134,8 @@ post '/upload' do
   #filename = params[:file][:filename]
   
   # upload to S3
-  AWS::S3::S3Object.store(filename, open(params[:file][:tempfile]), 'amdim', :access => :public_read)
-  object_url = AWS::S3::S3Object.url_for(filename, 'shorten', :authenticated => false)
+  AWS::S3::S3Object.store(filename, open(params[:file][:tempfile]), keys["s3_bucket"], :access => :public_read)
+  object_url = AWS::S3::S3Object.url_for(filename, keys["s3_bucket"], :authenticated => false)
   
   # generate shorturl
   url = ShortenUrl.new(:url => object_url, :key => key, :image => params[:image])
