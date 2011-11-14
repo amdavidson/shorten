@@ -3,10 +3,14 @@ require 'sinatra'
 require 'sequel'
 require 'uri'
 
+
+
+
 configure do
 	Sequel::Model.plugin(:schema)
-	
-	Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://shorten.db')
+
+  keys = YAML.load(File.open("keys.yaml", "r").read)	
+	Sequel.connect(keys['database_url'] || 'sqlite://shorten.db')
 
 	require 'ostruct'
 	Shorten = OpenStruct.new(
