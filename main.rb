@@ -30,10 +30,6 @@ $LOAD_PATH.unshift(File.dirname(__FILE__) + '/lib')
 require 'shortenurl'
 
 helpers do
-	def show_information
-		erb :information, :layout => false
-	end
-
 	def validate_link(link)
 		halt 401, 'We do not accept local URLs to be shortened' unless valid_url? link
 	end
@@ -65,12 +61,10 @@ helpers do
 end 
 
 get '/' do
-	@information = show_information
 	erb :index
 end
 
 get '/new' do
-	@information = show_information
 	erb :new, :locals => { :type => "main" }
 end
 
