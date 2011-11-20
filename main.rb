@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'sequel'
 require 'uri'
+require 'yaml'
 
 
 
@@ -111,9 +112,42 @@ get '/upload' do
   
 end
 
+post '/api-upload' do
+  require 'aws/s3'
+  
+  keys = YAML.load(File.open("keys.yaml", "r").read)
+ 
+  # establish connection
+  AWS::S3::Base.establish_connection!(
+    :access_key_id => keys['s3_key'],
+    :secret_access_key => keys['s3_secret']
+  )
+  
+  # generate key and check uniqueness
+  key = Anybase::Base62.random(Shorten.path_size)
+	key_check = ShortenUrl.filter(:url => key).first
+	
+	while key_check
+		key = Anybase::Base62.random(Shorten.path_size)
+		key_check = ShortenUrl.filter(:url => key).first
+	end
+	
+	# merge key and extension
+  filename = key + ".jpg"
+  
+  # upload to S3
+  AWS::S3::S3Object.store(filename, params[:media], keys["s3_bucket"], :access => :public_read)
+  object_url = AWS::S3::S3Object.url_for(filename, keys["s3_bucket"], :authenticated => false)
+  
+  # generate shorturl
+  url = ShortenUrl.new(:url => object_url, :key => key, :image => "true")
+  url.save
+  
+  "<mediaurl>" + url.short_url + "</mediaurl>"
+end
+
 post '/upload' do 
   require 'aws/s3'
-  require 'yaml'
  
   keys = YAML.load(File.open("keys.yaml", "r").read)
  
