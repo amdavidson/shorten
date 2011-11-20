@@ -136,7 +136,7 @@ post '/api-upload' do
   filename = key + ".jpg"
   
   # upload to S3
-  AWS::S3::S3Object.store(filename, params[:media], keys["s3_bucket"], :access => :public_read)
+  AWS::S3::S3Object.store(filename, open(params[:media][:tempfile]), keys["s3_bucket"], :access => :public_read)
   object_url = AWS::S3::S3Object.url_for(filename, keys["s3_bucket"], :authenticated => false)
   
   # generate shorturl
