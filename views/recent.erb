@@ -6,7 +6,12 @@
   <p>Most recent at the top:</p> 
   <ul>
   <% for url in urls do %>
-    <li><a href="<%=url.short_url%>"><%= url.short_url %></a> : <%= url.url %></li>
+    <li>
+      <a href="<%=url.short_url%>"><%= url.short_url %></a> : <%= url.url %>
+      <% if url.image %>
+        (image)
+      <% end %>
+    </li>
   <% end %>
   </ul>
 </div>
