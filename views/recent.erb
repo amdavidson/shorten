@@ -1,0 +1,12 @@
+<div class="twelve columns">
+  <h1>amd.im</h1>
+</div>
+<div class="twelve columns">
+  <h4>Recent Links</h4>
+  <p>Most recent at the top:</p> 
+  <ul>
+  <% for url in urls do %>
+    <li><a href="<%=url.short_url%>"><%= url.short_url %></a> : <%= url.url %></li>
+  <% end %>
+  </ul>
+</div>

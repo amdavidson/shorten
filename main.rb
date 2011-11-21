@@ -177,6 +177,12 @@ post '/upload' do
   erb :finished, :locals => { :url => url, :type => "finished", :image => params[:image] }
 end 
 
+get '/recent' do
+  urls = ShortenUrl.order(:id).reverse.limit(10)
+  
+  erb :recent, :locals => {:urls => urls}
+end
+
 get '/:short' do
 
 	url = ShortenUrl.find(:key => params[:short])
